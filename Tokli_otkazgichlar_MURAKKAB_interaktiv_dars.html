@@ -1,0 +1,81 @@
+<!doctype html><html lang="uz"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tokli o'tkazgichlarning o'zaro ta'siri — murakkab simulyatsiya</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#0b1525;color:#eaf2fb}header{padding:25px;background:#122b49;text-align:center;border-bottom:2px solid #315d87}main{max-width:1150px;margin:auto;padding:18px}.card{background:#13243a;border:1px solid #2c4c6d;border-radius:18px;padding:20px;margin:18px 0;box-shadow:0 8px 25px #0005}h1{margin:5px}h2{color:#9fd1ff}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}.ctrl{background:#0d1d31;padding:12px;border-radius:12px}.ctrl label{display:block;margin-bottom:6px;font-weight:bold}input{width:100%;accent-color:#78b8ef}select,button{padding:9px;border-radius:8px;border:1px solid #4d759a;background:#173653;color:white}button{cursor:pointer}.formula{font-size:25px;text-align:center;padding:15px;background:#0c1a2c;border-radius:12px;color:#b9ddff;margin:12px 0}canvas{width:100%;height:410px;background:#07111e;border:1px solid #31516f;border-radius:14px}.result{font-size:18px;margin:12px 0}.ok{color:#8ee6a8}.warn{color:#ffd58a}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}.small{font-size:13px;color:#b7c8da}
+</style></head><body>
+<header><h1>⚡ Tokli o'tkazgichlarning o‘zaro ta’sir kuchi</h1><div>11-sinf fizika · Murakkab interaktiv simulyatsiya va animatsiya</div></header>
+<main>
+
+<section class="card"><h2>1. Amper kuchi — vektorli simulyatsiya</h2>
+<div class="formula">F = B · I · l · sin α</div>
+<div class="grid">
+<div class="ctrl"><label>B — magnit induksiya (T)</label><input id="B" type="range" min="0" max="2" step=".01" value="1"><span id="BV"></span></div>
+<div class="ctrl"><label>I — tok kuchi (A)</label><input id="I" type="range" min="0" max="10" step=".1" value="4"><span id="IV"></span></div>
+<div class="ctrl"><label>l — o'tkazgich (m)</label><input id="L" type="range" min=".1" max="5" step=".1" value="2"><span id="LV"></span></div>
+<div class="ctrl"><label>α — burchak (°)</label><input id="A" type="range" min="0" max="180" value="90"><span id="AV"></span></div>
+</div>
+<canvas id="c1" width="1100" height="410"></canvas>
+<div class="result">Amper kuchi: <b id="F"></b> N · <span id="fmsg"></span></div>
+</section>
+
+<section class="card"><h2>2. Parallel tokli o'tkazgichlar — tortishish/itarilish</h2>
+<div class="formula">F/l = μ₀ I₁ I₂ / (2πr), &nbsp; μ₀ = 4π·10⁻⁷ H/m</div>
+<div class="grid">
+<div class="ctrl"><label>I₁ (A)</label><input id="I1" type="range" min="0" max="20" step=".1" value="8"><span id="I1V"></span></div>
+<div class="ctrl"><label>I₂ (A)</label><input id="I2" type="range" min="0" max="20" step=".1" value="6"><span id="I2V"></span></div>
+<div class="ctrl"><label>r — masofa (m)</label><input id="R" type="range" min=".1" max="3" step=".05" value="1"><span id="RV"></span></div>
+<div class="ctrl"><label>Tok yo'nalishi</label><select id="DIR"><option value="same">Bir xil: ↑ ↑</option><option value="opp">Qarama-qarshi: ↑ ↓</option></select></div>
+</div>
+<canvas id="c2" width="1100" height="410"></canvas>
+<div class="result" id="interaction"></div>
+</section>
+
+<section class="card"><h2>3. Magnit maydon kuch chiziqlari</h2>
+<p class="small">Har bir o'tkazgich atrofidagi aylana magnit maydon chiziqlarini va yo'nalish strelkalari maydonning yo'nalishini ifodalaydi.</p>
+<canvas id="c3" width="1100" height="410"></canvas>
+</section>
+
+<section class="card"><h2>4. Tajriba rejimi — qiymatni o'zgartiring</h2>
+<div class="tabs"><button onclick="preset(2,2,1)">Zaif tok</button><button onclick="preset(10,10,1)">Kuchli tok</button><button onclick="preset(10,10,2)">Masofani oshirish</button></div>
+<p id="experiment" class="result"></p>
+</section>
+
+<section class="card"><h2>5. Tok kuchi va 1 Amper</h2>
+<div class="formula">I = q/t</div>
+<div class="grid">
+<div class="ctrl"><label>q — zaryad (C)</label><input id="Q" type="range" min="0" max="200" value="20"><span id="QV"></span></div>
+<div class="ctrl"><label>t — vaqt (s)</label><input id="T" type="range" min="1" max="30" value="5"><span id="TV"></span></div>
+</div>
+<canvas id="c4" width="1100" height="300"></canvas><div class="result">I = <b id="CUR"></b> A</div>
+<p class="small">Zamonaviy SI tizimida amper elektr tok kuchining asosiy birligi bo'lib, uning ta'rifi elementar zaryadning aniq qiymatiga bog'langan.</p>
+</section>
+
+<section class="card"><h2>6. Interaktiv tekshiruv</h2>
+<div class="grid">
+<div class="ctrl">1. Bir xil yo'nalishdagi parallel toklar?<br><button onclick="ans(this,true)">Tortishadi</button> <button onclick="ans(this,false)">Itarishadi</button></div>
+<div class="ctrl">2. Qarama-qarshi yo'nalishdagi toklar?<br><button onclick="ans(this,false)">Tortishadi</button> <button onclick="ans(this,true)">Itarishadi</button></div>
+<div class="ctrl">3. α = 0° bo'lsa F?<br><button onclick="ans(this,true)">0 N</button> <button onclick="ans(this,false)">Maksimal</button></div>
+</div></section>
+</main>
+<script>
+const $=id=>document.getElementById(id), pi=Math.PI;
+function arrow(x,y,ang,len=25,color="#ffcf70"){x.save();x.strokeStyle=color;x.fillStyle=color;x.lineWidth=3;x.beginPath();x.moveTo(x0=x,y0=y);x.lineTo(x+Math.cos(ang)*len,y+Math.sin(ang)*len);x.stroke();let ex=x+Math.cos(ang)*len,ey=y+Math.sin(ang)*len;x.beginPath();x.moveTo(ex,ey);x.lineTo(ex-Math.cos(ang-.5)*9,ey-Math.sin(ang-.5)*9);x.lineTo(ex-Math.cos(ang+.5)*9,ey-Math.sin(ang+.5)*9);x.fill();x.restore()}
+function d1(){let b=+B.value,i=+I.value,l=+L.value,a=+A.value,rad=a*pi/180,f=b*i*l*Math.sin(rad);BV.textContent=b.toFixed(2);IV.textContent=i.toFixed(1);LV.textContent=l.toFixed(1);AV.textContent=a;F.textContent=f.toFixed(3);fmsg.textContent=a==90?'Maksimal qiymatga yaqin':a==0||a==180?'Kuch nolga teng':'Burchak o‘zgarmoqda';
+let x=c1.getContext('2d');x.clearRect(0,0,1100,410);x.font='18px Arial';x.fillStyle='#dcecff';
+for(let y=55;y<390;y+=55){x.strokeStyle='#24435f';x.beginPath();x.moveTo(20,y);x.lineTo(1080,y);x.stroke();for(let z=70;z<1080;z+=110)arrow(x,z,y,0,18,'#5f94bf')}
+x.strokeStyle='#f4f4f4';x.lineWidth=9;x.beginPath();x.moveTo(350,205);x.lineTo(750,205);x.stroke();x.fillText('I →',525,180);
+arrow(x,550,205,-pi/2,95,'#ff7b7b');x.fillText('F',565,110);x.fillText('α = '+a+'°',780,330);x.fillText('B → → →',40,35)}
+['B','I','L','A'].forEach(z=>$(z).oninput=d1);d1();
+
+function d2(){let i1=+I1.value,i2=+I2.value,r=+R.value,mu=4*pi*1e-7,fl=mu*i1*i2/(2*pi*r),same=DIR.value==='same';I1V.textContent=i1.toFixed(1);I2V.textContent=i2.toFixed(1);RV.textContent=r.toFixed(2);interaction.innerHTML=same?'🧲 <span class="ok"><b>TORTISHISH</b></span>':'↔ <span class="warn"><b>ITARISHISH</b></span>'+' · F/l = '+fl.toExponential(3)+' N/m';
+let x=c2.getContext('2d');x.clearRect(0,0,1100,410);x.font='19px Arial';x.fillStyle='#eaf2fb';let x1=330,x2=770;x.strokeStyle='#ddd';x.lineWidth=10;x.beginPath();x.moveTo(x1,70);x.lineTo(x1,340);x.stroke();x.beginPath();x.moveTo(x2,70);x.lineTo(x2,340);x.stroke();x.fillText(same?'I₁ ↑':'I₁ ↑',x1-35,50);x.fillText(same?'I₂ ↑':'I₂ ↓',x2-35,50);
+for(let y=100;y<330;y+=45){arrow(x,x1,y,-pi/2,25,'#70b8ff');arrow(x,x2,y,same?-pi/2:pi/2,25,'#70b8ff')}
+arrow(x,x1,205,same?0:pi,90,'#ff7b7b');arrow(x,x2,205,same?pi:0,90,'#ff7b7b');x.fillText('F₁',x1+(same?95:-130),190);x.fillText('F₂',x2+(same?-130:95),190);x.fillText('r = '+r.toFixed(2)+' m',510,385)}
+['I1','I2','R','DIR'].forEach(z=>$(z).addEventListener('input',d2));d2();
+
+function field(){let x=c3.getContext('2d');x.clearRect(0,0,1100,410);let centers=[[330,205,1],[770,205,DIR.value==='same'?1:-1]];x.font='18px Arial';centers.forEach(c=>{for(let r=35;r<150;r+=35){x.strokeStyle='#38698f';x.beginPath();x.arc(c[0],c[1],r,0,2*pi);x.stroke();let ang=(Date.now()/900)*c[2];arrow(x,c[0]+r*Math.cos(ang),c[1]+r*Math.sin(ang),ang+c[2]*pi/2,22,'#75bfff')}x.fillStyle='#fff';x.fillText(c[2]>0?'I ↑':'I ↓',c[0]-20,35)});requestAnimationFrame(field)}field();
+
+function d4(){let q=+Q.value,t=+T.value,i=q/t;QV.textContent=q;TV.textContent=t;CUR.textContent=i.toFixed(3);let x=c4.getContext('2d');x.clearRect(0,0,1100,300);x.font='20px Arial';x.fillStyle='#b9ddff';x.fillText('Zaryad oqimi',480,45);for(let k=0;k<Math.min(30,q);k++){let px=100+k*30;arrow(x,px,140,0,22,'#ffcf70')}x.fillStyle='#eaf2fb';x.fillText('q = '+q+' C    t = '+t+' s    I = '+i.toFixed(3)+' A',330,230)}['Q','T'].forEach(z=>$(z).oninput=d4);d4();
+function preset(a,b,r){I1.value=a;I2.value=b;R.value=r;d2();experiment.textContent='Tajriba: I₁='+a+' A, I₂='+b+' A, r='+r+' m. Masofa kamayganda o‘zaro ta’sir kuchi ortadi; toklar oshganda ham kuch ortadi.'}
+function ans(btn,good){btn.parentElement.style.border=good?'2px solid #70d890':'2px solid #e67d7d';btn.parentElement.insertAdjacentHTML('beforeend',' <b>'+ (good?'✓ To‘g‘ri':'✗ Noto‘g‘ri')+'</b>')}
+</script></body></html>
