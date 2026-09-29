@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>11-sinf fizika — Magnit maydon</title>
+<style>
+:root{--bg:#071426;--panel:#0e223b;--panel2:#102b49;--cyan:#47d7ff;--blue:#3182ff;--white:#f5f9ff;--muted:#b8c8da;--green:#46e09b;--red:#ff6b7a;--yellow:#ffd166}
+*{box-sizing:border-box} body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(135deg,#050d18,#0b1d34);color:var(--white)}
+header{padding:22px 5%;background:#06101f;border-bottom:1px solid #173555;position:sticky;top:0;z-index:10}
+h1{margin:0;font-size:clamp(24px,4vw,42px)} h2{color:var(--cyan)} h3{color:#dceeff}
+.sub{color:var(--muted);margin-top:7px}
+nav{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px} nav button,.btn{border:1px solid #28527d;background:#102b49;color:white;padding:10px 14px;border-radius:10px;cursor:pointer} nav button:hover,.btn:hover{background:#17466f}
+main{max-width:1200px;margin:auto;padding:22px}
+.slide{display:none;animation:fade .35s ease}.slide.active{display:block}@keyframes fade{from{opacity:.2;transform:translateY(8px)}to{opacity:1;transform:none}}
+.card{background:linear-gradient(145deg,var(--panel),#0a1b2e);border:1px solid #1d4165;border-radius:18px;padding:22px;margin:14px 0;box-shadow:0 10px 35px #0004}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.bigformula{font-size:clamp(30px,5vw,54px);text-align:center;color:#fff;background:#061525;border:2px solid #214d76;border-radius:16px;padding:22px;margin:15px 0;font-family:Georgia,serif}
+.kv{display:grid;grid-template-columns:1fr 1fr;gap:10px;align-items:center}.kv input,.kv select{width:100%;padding:10px;border-radius:9px;border:1px solid #35658e;background:#07192b;color:white}
+.result{font-size:24px;color:var(--green);font-weight:bold}.hint{color:var(--yellow)} .small{font-size:14px;color:var(--muted)}
+canvas{width:100%;height:340px;background:#04101d;border-radius:15px;border:1px solid #214d76}
+.controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.controls label{min-width:190px}.controls input[type=range]{width:180px}
+.quiz button{display:block;width:100%;text-align:left;margin:8px 0}.correct{border-color:var(--green)!important;background:#103c31!important}.wrong{border-color:var(--red)!important;background:#4a1822!important}
+.progress{height:8px;background:#11283f;border-radius:20px;overflow:hidden}.bar{height:100%;background:linear-gradient(90deg,var(--blue),var(--cyan));width:0}
+footer{text-align:center;color:var(--muted);padding:30px}
+.badge{display:inline-block;padding:6px 10px;border-radius:20px;background:#123d63;color:#bdeaff;margin:3px}
+</style>
+</head>
+<body>
+<header>
+<h1>Magnit maydon. Magnit maydonni tavsiflovchi kattaliklar</h1>
+<div class="sub">11-sinf fizika • interaktiv multimedia darsi • simulyatsiya + animatsiya + kalkulyator + test</div>
+<nav>
+<button onclick="go(0)">Titul</button><button onclick="go(1)">Maqsad</button><button onclick="go(2)">Reja</button>
+<button onclick="go(3)">1. Magnit maydon</button><button onclick="go(4)">Simulyatsiya</button>
+<button onclick="go(5)">2. B va Φ</button><button onclick="go(6)">Φ kalkulyator</button>
+<button onclick="go(7)">3. Amper kuchi</button><button onclick="go(8)">Amper simulyatsiya</button>
+<button onclick="go(9)">Masalalar</button><button onclick="go(10)">Test</button><button onclick="go(11)">Xulosa</button>
+</nav>
+</header>
+
+<main>
+<div class="progress"><div id="bar" class="bar"></div></div>
+
+<section class="slide active">
+<div class="card" style="text-align:center;padding:60px 20px">
+<div class="badge">FIZIKA • 11-SINF</div>
+<h2 style="font-size:clamp(32px,6vw,64px)">MAGNIT MAYDON</h2>
+<p style="font-size:22px">Magnit maydon. Magnit maydonni tavsiflovchi kattaliklar.</p>
+<p class="sub">Interaktiv multimedia darsi</p>
+<button class="btn" onclick="go(1)">Darsni boshlash →</button>
+</div></section>
+
+<section class="slide"><div class="card">
+<h2>Dars maqsadi</h2><div class="grid">
+<div><h3>Bilim</h3><p>Magnit maydon, magnit induksiya, magnit oqim va Amper kuchini tushuntirish.</p></div>
+<div><h3>Ko‘nikma</h3><p>O‘ng va chap qo‘l qoidalarini qo‘llash, formulalar orqali hisoblash.</p></div>
+<div><h3>Interaktiv faoliyat</h3><p>Simulyatsiyada B, I, l, S va α ni o‘zgartirib natijani kuzatish.</p></div>
+</div></div></section>
+
+<section class="slide"><div class="card"><h2>Dars rejasi</h2>
+<ol><li>Magnit maydon va uning hosil bo‘lishi</li><li>Magnit induksiya va magnit oqim</li><li>Magnit maydonning tokli o‘tkazgichga ta’siri — Amper kuchi</li><li>Simulyatsiyalar va kalkulyatorlar</li><li>Masalalar va interaktiv test</li><li>Mustahkamlash, xulosa va uyga vazifa</li></ol>
+<div class="card"><h3>Motivatsion savol</h3><p style="font-size:22px">“Tok o‘tayotgan sim yoniga kompas qo‘ysak, kompas strelkasi nega buriladi?”</p></div>
+</div></section>
+
+<section class="slide"><div class="card"><h2>1. Magnit maydon</h2>
+<div class="grid"><div><h3>Asosiy g‘oya</h3><p>Harakatlanuvchi elektr zaryadlari va tokli o‘tkazgichlar atrofida magnit maydon hosil bo‘ladi. Doimiy magnit ham atrofida magnit maydon hosil qiladi.</p></div>
+<div><h3>Kuch chiziqlari</h3><p>Magnit maydonni grafik tasvirlash uchun magnit kuch chiziqlaridan foydalaniladi. Ular maydon yo‘nalishini ko‘rsatadi.</p></div></div>
+<h3>O‘ng qo‘l qoidasi</h3><p>O‘ng qo‘l bosh barmog‘i tok yo‘nalishini ko‘rsatsa, bukilgan barmoqlar magnit maydon kuch chiziqlari yo‘nalishini ko‘rsatadi.</p>
+</div></section>
+
+<section class="slide"><div class="card"><h2>Simulyatsiya 1 — Tokli o‘tkazgich atrofidagi magnit maydon</h2>
+<div class="controls"><button class="btn" onclick="toggleField()">Magnit maydonni yoqish/o‘chirish</button>
+<button class="btn" onclick="reverseCurrent()">Tok yo‘nalishini almashtirish</button>
+<span id="curLabel" class="badge">Tok: ↑</span></div>
+<canvas id="fieldCanvas"></canvas>
+<p class="hint">Kuzating: tok yo‘nalishi o‘zgarganda aylana kuch chiziqlari yo‘nalishi ham o‘zgaradi.</p>
+</div></section>
+
+<section class="slide"><div class="card"><h2>2. Magnit induksiya va magnit oqim</h2>
+<p><b>Magnit induksiya — B</b> magnit maydonning yo‘nalishi va ta’sirini tavsiflovchi vektor kattalik. SI birligi — <b>Tesla (T)</b>.</p>
+<p><b>Magnit oqim — Φ</b> berilgan yuza orqali o‘tuvchi magnit maydonni tavsiflaydi.</p>
+<div class="bigformula">Φ = B S cos α</div>
+<p>SI birligi — <b>Weber (Wb)</b>. Bu yerda α — magnit maydon bilan yuza normalining orasidagi burchak.</p>
+</div></section>
+
+<section class="slide"><div class="card"><h2>Simulyatsiya 2 — Magnit oqim kalkulyatori</h2>
+<div class="grid"><div>
+<div class="kv"><label>B (T)</label><input id="B" type="number" step="0.01" value="0.5" oninput="calcFlux()"></div>
+<div class="kv"><label>S (m²)</label><input id="S" type="number" step="0.01" value="2" oninput="calcFlux()"></div>
+<div class="kv"><label>α (°)</label><input id="A" type="range" min="0" max="90" value="0" oninput="calcFlux()"></div>
+<div class="small">α = <span id="aval">0</span>°</div>
+</div><div class="card"><div>Magnit oqim:</div><div id="flux" class="result">1.000 Wb</div><p id="fluxExplain" class="small"></p></div></div>
+<canvas id="fluxCanvas"></canvas>
+</div></section>
+
+<section class="slide"><div class="card"><h2>3. Magnit maydonning tokli o‘tkazgichga ta’siri — Amper kuchi</h2>
+<p>Magnit maydon tokli o‘tkazgichga kuch bilan ta’sir qiladi. Bu kuch <b>Amper kuchi</b> deyiladi.</p>
+<div class="bigformula">F = B I l sin α</div>
+<p><b>Chap qo‘l qoidasi:</b> chap qo‘l magnit maydon kuch chiziqlari kaftga kiradigan qilib tutiladi, to‘rt barmoq tok yo‘nalishini ko‘rsatsa, bosh barmoq Amper kuchi yo‘nalishini ko‘rsatadi.</p>
+<div class="grid"><div><span class="badge">F — N</span><span class="badge">B — T</span><span class="badge">I — A</span></div><div><span class="badge">l — m</span><span class="badge">α — °</span></div></div>
+</div></section>
+
+<section class="slide"><div class="card"><h2>Simulyatsiya 3 — Amper kuchi</h2>
+<div class="grid"><div>
+<div class="kv"><label>B (T)</label><input id="b2" type="number" step="0.1" value="0.8" oninput="calcForce()"></div>
+<div class="kv"><label>I (A)</label><input id="i2" type="number" step="0.1" value="2" oninput="calcForce()"></div>
+<div class="kv"><label>l (m)</label><input id="l2" type="number" step="0.1" value="0.5" oninput="calcForce()"></div>
+<div class="kv"><label>α (°)</label><input id="a2" type="range" min="0" max="90" value="90" oninput="calcForce()"></div>
+<div class="small">α = <span id="a2v">90</span>°</div></div>
+<div class="card"><div>Amper kuchi:</div><div id="force" class="result">0.800 N</div><p id="forceExplain" class="small"></p></div></div>
+<canvas id="forceCanvas"></canvas>
+<div class="controls"><button class="btn" onclick="reverseI()">Tok yo‘nalishini almashtirish</button><button class="btn" onclick="reverseB()">B yo‘nalishini almashtirish</button></div>
+</div></section>
+
+<section class="slide"><div class="card"><h2>Asosiy formulalar</h2>
+<div class="bigformula">Φ = B S cos α</div>
+<div class="bigformula">F = B I l sin α</div>
+<div class="grid"><div><b>B</b> — magnit induksiya, T<br><b>Φ</b> — magnit oqim, Wb<br><b>F</b> — Amper kuchi, N</div>
+<div><b>I</b> — tok kuchi, A<br><b>l</b> — o‘tkazgich uzunligi, m<br><b>S</b> — yuza, m²<br><b>α</b> — maydon bilan yuza normalining burchagi</div></div>
+</div></section>
+
+<section class="slide"><div class="card"><h2>Masalalar</h2>
+<div class="card"><b>1-masala.</b> B = 0.4 T, S = 3 m², α = 60°. Φ ni toping.<details><summary>Javobni tekshirish</summary><p>Φ = 0.4 × 3 × cos60° = <b>0.6 Wb</b>.</p></details></div>
+<div class="card"><b>2-masala.</b> B = 0.5 T, I = 4 A, l = 0.2 m, α = 90°. F ni toping.<details><summary>Javobni tekshirish</summary><p>F = 0.5 × 4 × 0.2 × sin90° = <b>0.4 N</b>.</p></details></div>
+<div class="card"><b>3-masala.</b> B = 0.8 T, S = 0.5 m², α = 0°. Φ ni toping.<details><summary>Javobni tekshirish</summary><p>Φ = 0.8 × 0.5 × cos0° = <b>0.4 Wb</b>.</p></details></div>
+</div></section>
+
+<section class="slide"><div class="card"><h2>“Bilimingizni tekshiring” — 8 ta interaktiv test</h2><div id="quiz" class="quiz"></div><div id="score" class="result"></div></div></section>
+
+<section class="slide"><div class="card"><h2>Mustahkamlash va dars xulosasi</h2>
+<div class="grid"><div><h3>3 ta asosiy fikr</h3><ol><li>Tok va magnitlar magnit maydon hosil qiladi.</li><li>Magnit oqim Φ = BScosα.</li><li>Tokli o‘tkazgichga Amper kuchi F = BIl sinα bilan ta’sir qiladi.</li></ol></div>
+<div><h3>Uyga vazifa</h3><p>1) O‘ng va chap qo‘l qoidalarini chizma bilan tushuntiring. 2) Φ va F formulalari bo‘yicha 2 tadan masala tuzing va yeching. 3) Uyda magnitlardan foydalaniladigan 5 ta qurilmani aniqlang.</p></div></div>
+<div class="card"><h3>Yakuniy savol</h3><p style="font-size:21px">B, S, I, l va α o‘zgarganda fizik natija qanday o‘zgarishini simulyatsiyada kuzating va xulosa yozing.</p></div>
+</div></section>
+</main>
+<footer>Interaktiv multimedia darsi • 11-sinf fizika • Magnit maydon</footer>
+
+<script>
+let page=0, fieldOn=true, currentDir=1, iDir=1, bDir=1;
+const slides=[...document.querySelectorAll('.slide')];
+function go(n){page=n;slides.forEach((s,i)=>s.classList.toggle('active',i===n));document.getElementById('bar').style.width=((n)/(slides.length-1)*100)+'%';drawAll();}
+function drawAll(){drawField();drawFlux();drawForce();}
+function resizeCanvas(c){const r=c.getBoundingClientRect(),d=devicePixelRatio||1;c.width=r.width*d;c.height=r.height*d;return [r.width,r.height,d]}
+function drawField(){
+ const c=document.getElementById('fieldCanvas'); if(!c)return; const [w,h,d]=resizeCanvas(c),x=c.getContext('2d');x.scale(d,d);x.clearRect(0,0,w,h);
+ const cx=w/2,cy=h/2; x.strokeStyle='#dceeff';x.lineWidth=2;x.beginPath();x.moveTo(cx,35);x.lineTo(cx,h-35);x.stroke();
+ x.fillStyle='#ffd166';x.beginPath();x.arc(cx,cy,10,0,7);x.fill();x.fillStyle='#071426';x.font='bold 15px Arial';x.textAlign='center';x.fillText(currentDir>0?'⊙':'⊗',cx,cy+5);
+ if(!fieldOn)return;
+ for(let r=35;r<Math.min(w,h)/2-15;r+=28){x.beginPath();x.strokeStyle='#47d7ff';x.lineWidth=1.6;x.arc(cx,cy,r,0,Math.PI*2);x.stroke();
+   for(let k=0;k<2;k++){let a=(performance.now()/900*currentDir + k*Math.PI)% (Math.PI*2);let px=cx+r*Math.cos(a),py=cy+r*Math.sin(a);x.fillStyle='#47d7ff';x.beginPath();x.arc(px,py,4,0,7);x.fill();}
+ }
+ x.fillStyle='#fff';x.font='16px Arial';x.fillText(currentDir>0?'Tok yo‘nalishi: yuqoriga':'Tok yo‘nalishi: pastga',cx,25);
+}
+function toggleField(){fieldOn=!fieldOn;drawField()}
+function reverseCurrent(){currentDir*=-1;document.getElementById('curLabel').textContent='Tok: '+(currentDir>0?'↑':'↓');drawField()}
+function drawFlux(){
+ const c=document.getElementById('fluxCanvas');if(!c)return;const [w,h,d]=resizeCanvas(c),x=c.getContext('2d');x.scale(d,d);x.clearRect(0,0,w,h);
+ const B=+document.getElementById('B').value||0,S=+document.getElementById('S').value||0,A=+document.getElementById('A').value||0;
+ const ang=A*Math.PI/180, cx=w/2,cy=h/2; x.strokeStyle='#47d7ff';x.lineWidth=2;
+ x.save();x.translate(cx,cy);x.rotate(ang);x.strokeRect(-120,-70,240,140);x.fillStyle='#47d7ff33';x.fillRect(-120,-70,240,140);x.restore();
+ for(let yy=-130;yy<=130;yy+=30){x.strokeStyle='#8bc7ff88';x.beginPath();x.moveTo(20,cy+yy);x.lineTo(w-20,cy+yy);x.stroke();x.fillStyle='#fff';x.fillText('B',w-35,cy+yy-5)}
+ x.fillStyle='#fff';x.font='16px Arial';x.fillText('α = '+A+'°',20,28);x.fillText('Yuza S',cx-25,cy+95);
+}
+function calcFlux(){const B=+document.getElementById('B').value||0,S=+document.getElementById('S').value||0,A=+document.getElementById('A').value||0;document.getElementById('aval').textContent=A;const f=B*S*Math.cos(A*Math.PI/180);document.getElementById('flux').textContent=f.toFixed(3)+' Wb';document.getElementById('fluxExplain').textContent='Φ = '+B+' × '+S+' × cos('+A+'°)';drawFlux()}
+function drawForce(){
+ const c=document.getElementById('forceCanvas');if(!c)return;const [w,h,d]=resizeCanvas(c),x=c.getContext('2d');x.scale(d,d);x.clearRect(0,0,w,h);
+ const A=+document.getElementById('a2').value||0, cx=w/2,cy=h/2;
+ x.fillStyle='#193e62';x.fillRect(80,70,100,h-140);x.fillRect(w-180,70,100,h-140);
+ x.fillStyle='#fff';x.font='bold 24px Arial';x.fillText('N',110,cy);x.fillText('S',w-150,cy);
+ x.strokeStyle='#47d7ff';x.lineWidth=5;x.beginPath();x.moveTo(cx-170,cy);x.lineTo(cx+170,cy);x.stroke();
+ x.fillStyle='#47d7ff';x.beginPath();x.moveTo(cx+170,cy);x.lineTo(cx+145,cy-12);x.lineTo(cx+145,cy+12);x.fill();
+ x.strokeStyle='#ffd166';x.lineWidth=6;x.beginPath();x.moveTo(cx,cy-80);x.lineTo(cx,cy+80);x.stroke();
+ x.fillStyle='#ffd166';x.font='16px Arial';x.fillText(iDir>0?'I ↑':'I ↓',cx+12,cy-88);
+ const fdir=(iDir*bDir>=0)?1:-1;x.strokeStyle='#46e09b';x.lineWidth=5;x.beginPath();x.moveTo(cx,cy);x.lineTo(cx+fdir*100,cy-80);x.stroke();
+ x.fillStyle='#46e09b';x.beginPath();x.moveTo(cx+fdir*100,cy-80);x.lineTo(cx+fdir*78,cy-82);x.lineTo(cx+fdir*95,cy-62);x.fill();
+ x.fillText('F',cx+fdir*108,cy-82);x.fillStyle='#fff';x.fillText('α = '+A+'°',cx-30,cy+115);
+}
+function calcForce(){const B=+document.getElementById('b2').value||0,I=+document.getElementById('i2').value||0,l=+document.getElementById('l2').value||0,A=+document.getElementById('a2').value||0;document.getElementById('a2v').textContent=A;const f=B*I*l*Math.sin(A*Math.PI/180);document.getElementById('force').textContent=f.toFixed(3)+' N';document.getElementById('forceExplain').textContent='F = '+B+' × '+I+' × '+l+' × sin('+A+'°)';drawForce()}
+function reverseI(){iDir*=-1;drawForce()} function reverseB(){bDir*=-1;drawForce()}
+const qs=[
+['Magnit maydonni nima hosil qilishi mumkin?',['Faqat plastmassa','Tok va magnitlar','Faqat suv','Faqat yorug‘lik'],1,'Elektr toki va magnitlar atrofida magnit maydon mavjud.'],
+['Magnit induksiyaning SI birligi qaysi?',['Wb','N','T','A'],2,'Magnit induksiya Tesla (T) bilan o‘lchanadi.'],
+['Magnit oqim formulasi qaysi?',['Φ=B/S','Φ=BS cosα','Φ=BI l','Φ=F/B'],1,'Magnit oqim Φ=BScosα.'],
+['α=0° bo‘lsa cosα nimaga teng?',['0','0.5','1','-1'],2,'cos0°=1, shuning uchun Φ maksimal qiymatga ega bo‘ladi (B va S o‘zgarmasa).'],
+['Amper kuchi formulasi qaysi?',['F=BIl sinα','F=BS cosα','F=I/R','F=ma'],0,'Tokli o‘tkazgichga ta’sir qiluvchi Amper kuchi F=BIl sinα.'],
+['F qaysi birlikda o‘lchanadi?',['Tesla','Weber','Nyuton','Volt'],2,'Kuchning SI birligi — Nyuton (N).'],
+['O‘ng qo‘l qoidasi nimani aniqlashga yordam beradi?',['Tok qarshiligini','Magnit maydon yo‘nalishini','Massani','Temperaturani'],1,'O‘ng qo‘l qoidasi tok atrofidagi magnit maydon yo‘nalishini aniqlaydi.'],
+['Amper kuchi qachon 0 bo‘ladi?',['α=90°','α=45°','α=0°','B juda katta'],2,'sin0°=0, shuning uchun F=0.']
+];
+function buildQuiz(){let q=document.getElementById('quiz');q.innerHTML='';qs.forEach((it,qi)=>{let d=document.createElement('div');d.className='card';d.innerHTML='<b>'+(qi+1)+'. '+it[0]+'</b>';it[1].forEach((op,oi)=>{let b=document.createElement('button');b.className='btn';b.textContent=op;b.onclick=()=>answer(qi,oi,b);d.appendChild(b)});let p=document.createElement('p');p.id='exp'+qi;d.appendChild(p);q.appendChild(d)})}
+let score=0,answered=new Set();
+function answer(qi,oi,b){if(answered.has(qi))return;answered.add(qi);const item=qs[qi];if(oi===item[2]){b.classList.add('correct');score++;}else{b.classList.add('wrong');}document.getElementById('exp'+qi).textContent=(oi===item[2]?'✓ To‘g‘ri. ':'✗ Noto‘g‘ri. ')+item[3];document.getElementById('score').textContent='Natija: '+score+'/'+qs.length}
+window.addEventListener('resize',drawAll);setInterval(()=>{if(page===4)drawField()},70);buildQuiz();calcFlux();calcForce();drawAll();
+</script>
+</body></html>
